@@ -1,39 +1,33 @@
-import Reveal from './Reveal.jsx'
 import { ArrowRight, WhatsApp } from './Icons.jsx'
-import { site, waLink } from '../data/site.js'
+import { waLink } from '../data/site.js'
 
-/** Blok ajakan (call to action) sebelum footer. */
-export default function CtaBand({
-  title = 'Siap membangun sesuatu yang hebat?',
-  desc = 'Ceritakan kebutuhan Anda, kami bantu petakan solusi yang paling tepat — tanpa biaya di tahap konsultasi.',
-}) {
+export default function CtaBand() {
   return (
-    <section className="section">
+    <section className="sec sec--tight">
       <div className="container">
-        <Reveal className="cta-band">
-          <span className="cta-band__glow" aria-hidden="true" />
-          <div className="cta-band__inner">
-            <div>
-              <h2>{title}</h2>
-              <p>{desc}</p>
-            </div>
-            <div className="cta-band__actions">
-              <a
-                className="btn btn--primary btn--lg"
-                href={waLink()}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <WhatsApp size={19} />
-                WhatsApp Kami
-              </a>
-              <a className="btn btn--light btn--lg" href={`mailto:${site.email}`}>
-                Kirim Email
-                <ArrowRight size={18} />
-              </a>
-            </div>
+        <div className="cta">
+          <h2>Siap membangun sesuatu yang hebat?</h2>
+          <p>
+            Mari wujudkan ide Anda bersama kami. Ceritakan kebutuhannya, kami bantu susun lingkup,
+            waktu, dan perkiraan biayanya lebih dulu.
+          </p>
+
+          <div className="cta__actions">
+            <a className="btn btn--primary btn--lg" href="#kontak">
+              Hubungi Kami
+              <ArrowRight size={16} />
+            </a>
+            <a
+              className="btn btn--light btn--lg"
+              href={waLink()}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <WhatsApp size={17} />
+              WhatsApp
+            </a>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   )

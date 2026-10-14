@@ -1,37 +1,23 @@
-import { Link } from 'react-router-dom'
-import { Icon, ArrowUpRight } from './Icons.jsx'
+import ImageSlot from './ImageSlot.jsx'
 
-export default function ProjectCard({ project, showStack = true }) {
+export default function ProjectCard({ project }) {
   return (
-    <article className="project-card">
-      <div className={`project-card__thumb project-card__thumb--${project.tone || 'b'}`}>
-        <span className="project-card__glyph">
-          <Icon name={project.icon || 'layers'} size={54} strokeWidth={1.3} />
-        </span>
-        <span className="badge badge--glass project-card__cat">{project.category}</span>
-      </div>
+    <article className="card">
+      <ImageSlot
+        src={project.image}
+        alt={`Tampilan ${project.title}`}
+        note={`Tangkapan layar ${project.title}, rasio 4:3.`}
+        className="proj__shot"
+      />
 
-      <div className="project-card__body">
-        <span className="muted" style={{ fontSize: '0.8rem', fontWeight: 600 }}>
-          {project.client} &middot; {project.year}
-        </span>
-        <h3 className="project-card__title">{project.title}</h3>
-        <p className="project-card__desc">{project.description}</p>
+      <div className="card__body">
+        <div className="proj__meta">
+          <span className="chip chip--red">{project.category}</span>
+          <span className="note num">{project.year}</span>
+        </div>
 
-        {showStack && (
-          <div className="tag-list">
-            {project.stack.map((tech) => (
-              <span className="tag" key={tech}>
-                {tech}
-              </span>
-            ))}
-          </div>
-        )}
-
-        <Link className="link-arrow" to="/portofolio">
-          Lihat studi kasus
-          <ArrowUpRight size={16} />
-        </Link>
+        <h3>{project.title}</h3>
+        <p style={{ color: 'var(--ink-soft)', fontSize: '0.96rem' }}>{project.line}</p>
       </div>
     </article>
   )

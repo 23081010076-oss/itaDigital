@@ -1,22 +1,16 @@
-import { Link } from 'react-router-dom'
 import Logo from './Logo.jsx'
-import { Clock, Mail, MapPin, Phone, WhatsApp, Icon } from './Icons.jsx'
-import { navLinks, services, site, waLink } from '../data/site.js'
+import { Icon, WhatsApp } from './Icons.jsx'
+import { sections, site, waLink } from '../data/site.js'
 
 const year = new Date().getFullYear()
 
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <span className="footer__glow" aria-hidden="true" />
-
       <div className="container footer__top">
         <div className="footer__brand">
-          <Logo theme="light" />
-          <p className="footer__desc">
-            {site.name} adalah perusahaan teknologi yang berfokus pada pengembangan solusi digital
-            inovatif. Kami berkomitmen menghadirkan layanan yang efisien, modern, dan mudah diakses.
-          </p>
+          <Logo tone="light" />
+          <p className="footer__desc">{site.summary}</p>
           <div className="footer__socials">
             {site.socials.map((social) => (
               <a
@@ -26,9 +20,8 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label={social.name}
-                title={social.name}
               >
-                <Icon name={social.icon} size={19} />
+                <Icon name={social.icon} size={17} />
               </a>
             ))}
             <a
@@ -37,70 +30,46 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer noopener"
               aria-label="WhatsApp"
-              title="WhatsApp"
             >
-              <WhatsApp size={19} />
+              <WhatsApp size={17} />
             </a>
           </div>
         </div>
 
         <div>
-          <h4 className="footer__title">Menu</h4>
-          <nav className="footer__links" aria-label="Navigasi footer">
-            {navLinks.map((link) => (
-              <Link key={link.to} className="footer__link" to={link.to}>
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        <div>
-          <h4 className="footer__title">Layanan</h4>
-          <nav className="footer__links" aria-label="Daftar layanan">
-            {services.map((service) => (
-              <Link key={service.slug} className="footer__link" to="/layanan">
-                {service.title}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        <div>
-          <h4 className="footer__title">Hubungi Kami</h4>
-          <div className="footer__contact">
-            <span className="footer__contact-item">
-              <MapPin size={18} />
-              <span>{site.address}</span>
-            </span>
-            <span className="footer__contact-item">
-              <Mail size={18} />
-              <a href={`mailto:${site.email}`}>{site.email}</a>
-            </span>
-            <span className="footer__contact-item">
-              <Phone size={18} />
-              <a href={waLink()} target="_blank" rel="noreferrer noopener">
-                {site.phoneDisplay}
+          <p className="footer__title">Bagian</p>
+          <nav className="footer__links" aria-label="Bagian halaman">
+            {sections.map((section) => (
+              <a key={section.id} className="footer__link" href={`#${section.id}`}>
+                {section.label}
               </a>
-            </span>
-            <span className="footer__contact-item">
-              <Clock size={18} />
-              <span>{site.hours}</span>
-            </span>
-          </div>
+            ))}
+          </nav>
+        </div>
+
+        <div>
+          <p className="footer__title">Kontak</p>
+          <nav className="footer__links" aria-label="Kontak">
+            <a className="footer__link" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
+            <a className="footer__link" href={waLink()} target="_blank" rel="noreferrer noopener">
+              {site.phoneDisplay}
+            </a>
+            <span className="footer__link">{site.city}</span>
+            <span className="footer__link">{site.hours}</span>
+          </nav>
         </div>
       </div>
 
       <div className="container footer__bottom">
         <span>
-          Copyright &copy; {year} {site.name}. Seluruh hak cipta dilindungi.
+          {year} {site.name}
         </span>
         <span className="footer__bottom-links">
-          <Link to="/tentang">Tentang Kami</Link>
-          <Link to="/kontak">Kontak</Link>
-          <a href={waLink()} target="_blank" rel="noreferrer noopener">
-            Dukungan
-          </a>
+          <a href="#layanan">Layanan</a>
+          <a href="#produk">Produk</a>
+          <a href="#kontak">Kontak</a>
         </span>
       </div>
     </footer>

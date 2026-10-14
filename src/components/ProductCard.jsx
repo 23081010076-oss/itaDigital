@@ -1,40 +1,33 @@
-import { Link } from 'react-router-dom'
-import { Icon, ArrowRight } from './Icons.jsx'
+import { ArrowRight, WhatsApp } from './Icons.jsx'
+import ImageSlot from './ImageSlot.jsx'
+import { site, waLink } from '../data/site.js'
 
 export default function ProductCard({ product }) {
   return (
-    <article className="product-card">
-      <div className="product-card__media">
-        <span className={`badge badge--${product.statusTone || 'green'} product-card__badge`}>
-          {product.status}
-        </span>
-        <span className="product-card__glyph">
-          <Icon name={product.icon} size={32} />
-        </span>
-      </div>
+    <article className="card">
+      <ImageSlot
+        src={product.image}
+        alt={`Tampilan ${product.title}`}
+        note={`Tangkapan layar ${product.title}, rasio 16:10.`}
+        className="prod__shot"
+      />
 
-      <div className="product-card__body">
-        <span className="badge badge--red">{product.category}</span>
+      <div className="card__body">
+        <span className="chip">{product.kind}</span>
         <h3>{product.title}</h3>
-        <p className="product-card__desc">{product.description}</p>
+        <p style={{ color: 'var(--ink-soft)', fontSize: '0.96rem' }}>{product.line}</p>
 
-        <ul className="list-check">
-          {product.features.slice(0, 3).map((feature) => (
-            <li key={feature}>
-              <Icon name="checkCircle" size={17} />
-              {feature}
-            </li>
-          ))}
-        </ul>
-
-        <div className="product-card__foot">
-          <Link className="link-arrow" to="/kontak">
+        <div className="card__foot">
+          <span className="chip chip--red">{product.status}</span>
+          <a
+            className="link"
+            href={waLink(`Halo ${site.name}, saya ingin demo produk ${product.title}.`)}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             Minta demo
-            <ArrowRight size={16} />
-          </Link>
-          <Link className="btn btn--outline btn--sm" to="/produk">
-            Detail
-          </Link>
+            <ArrowRight size={15} />
+          </a>
         </div>
       </div>
     </article>

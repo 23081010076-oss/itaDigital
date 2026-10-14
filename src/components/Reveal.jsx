@@ -1,16 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 
-/**
- * Membungkus konten dengan animasi muncul saat discroll.
- * variant: '' | 'left' | 'right' | 'zoom'
- */
+/* Muncul saat masuk layar: naik 40px sambil mengecil sedikit, lalu mantap.
+   `delay` dipakai untuk membuat kartu-kartu menyusul bergantian. */
 export default function Reveal({
   children,
   delay = 0,
-  variant = '',
   as: Tag = 'div',
   className = '',
-  style,
   ...rest
 }) {
   const ref = useRef(null)
@@ -20,7 +16,12 @@ export default function Reveal({
     const el = ref.current
     if (!el) return
 
-    if (typeof IntersectionObserver === 'undefined') {
+    const reduce =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (reduce || typeof IntersectionObserver === 'undefined') {
       setVisible(true)
       return
     }
@@ -34,19 +35,20 @@ export default function Reveal({
           }
         })
       },
-      { threshold: 0.12, rootMargin: '0px 0px -70px 0px' },
+      { threshold: 0.12, rootMargin: '0px 0px -60px 0px' },
     )
 
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
 
-  const classes = ['reveal', variant && `reveal--${variant}`, visible && 'is-visible', className]
-    .filter(Boolean)
-    .join(' ')
-
   return (
-    <Tag ref={ref} className={classes} style={{ '--reveal-delay': `${delay}ms`, ...style }} {...rest}>
+    <Tag
+      ref={ref}
+      className={`fade${visible ? ' is-visible' : ''}${className ? ` ${className}` : ''}`}
+      style={{ transitionDelay: `${delay}ms` }}
+      {...rest}
+    >
       {children}
     </Tag>
   )

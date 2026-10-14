@@ -1,25 +1,31 @@
 import { useEffect, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
 import Logo from './Logo.jsx'
 import { ArrowRight, Close, Mail, Menu, Phone, WhatsApp } from './Icons.jsx'
-import { navLinks, site, waLink } from '../data/site.js'
+import { sections, site, waLink } from '../data/site.js'
 
+/* Header satu halaman. Tautan menunjuk ke bagian di halaman yang sama dan
+   bagian yang sedang terlihat ditandai garis merah. */
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const { pathname } = useLocation()
+  const [active, setActive] = useState('')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const targets = sections.map((section) => document.getElementById(section.id)).filter(Boolean)
+    if (!targets.length || typeof IntersectionObserver === 'undefined') return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id)
+        })
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 },
+    )
+
+    targets.forEach((target) => observer.observe(target))
+    return () => observer.disconnect()
   }, [])
 
-  // Tutup drawer setiap kali rute berubah
-  useEffect(() => setOpen(false), [pathname])
-
-  // Kunci scroll body saat drawer terbuka
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => {
@@ -27,87 +33,80 @@ export default function Navbar() {
     }
   }, [open])
 
-  // Tutup dengan tombol Escape
   useEffect(() => {
-    const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    const onKey = (event) => event.key === 'Escape' && setOpen(false)
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
   return (
     <>
-      <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
+      <header className="site-header">
         <div className="container header-inner">
-          <NavLink to="/" aria-label={`${site.name} - beranda`}>
+          <a href="#top" aria-label={`${site.name}, kembali ke atas`}>
             <Logo />
-          </NavLink>
+          </a>
 
-          <nav className="nav" aria-label="Navigasi utama">
+          <nav className="nav" aria-label="Bagian halaman">
             <ul className="nav__list">
-              {navLinks.map((link) => (
-                <li key={link.to}>
-                  <NavLink
-                    to={link.to}
-                    end={link.to === '/'}
-                    className={({ isActive }) => `nav__link${isActive ? ' is-active' : ''}`}
+              {sections.map((section) => (
+                <li key={section.id}>
+                  <a
+                    className={`nav__link${active === section.id ? ' is-active' : ''}`}
+                    href={`#${section.id}`}
                   >
-                    {link.label}
-                  </NavLink>
+                    {section.label}
+                  </a>
                 </li>
               ))}
             </ul>
           </nav>
 
           <div className="header__actions">
-            <a
-              className="btn btn--dark btn--sm"
-              href={waLink()}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <WhatsApp size={17} />
-              Konsultasi Gratis
+            <a className="btn btn--sm" href="#kontak">
+              Hubungi kami
+              <ArrowRight size={15} />
             </a>
             <button
               type="button"
               className="nav-toggle"
-              aria-label="Buka menu navigasi"
+              aria-label="Buka menu"
               aria-expanded={open}
               onClick={() => setOpen(true)}
             >
-              <Menu size={22} />
+              <Menu size={20} />
             </button>
           </div>
         </div>
       </header>
 
-      {/* ---------- Drawer navigasi mobile ---------- */}
       <div className={`drawer${open ? ' is-open' : ''}`} aria-hidden={!open}>
         <div className="drawer__overlay" onClick={() => setOpen(false)} />
-        <aside className="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu navigasi">
+
+        <aside className="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
           <div className="drawer__head">
-            <Logo size={38} showTagline={false} />
+            <Logo size={34} showTagline={false} />
             <button
               type="button"
               className="drawer__close"
               aria-label="Tutup menu"
               onClick={() => setOpen(false)}
             >
-              <Close size={20} />
+              <Close size={18} />
             </button>
           </div>
 
-          <nav className="drawer__nav" aria-label="Navigasi mobile">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.to === '/'}
-                className={({ isActive }) => `drawer__link${isActive ? ' is-active' : ''}`}
+          <nav className="drawer__nav" aria-label="Bagian halaman">
+            {sections.map((section) => (
+              <a
+                key={section.id}
+                className={`drawer__link${active === section.id ? ' is-active' : ''}`}
+                href={`#${section.id}`}
+                onClick={() => setOpen(false)}
               >
-                {link.label}
-                <ArrowRight size={17} />
-              </NavLink>
+                {section.label}
+                <ArrowRight size={16} />
+              </a>
             ))}
           </nav>
 
@@ -118,14 +117,14 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer noopener"
             >
-              <WhatsApp size={18} />
+              <WhatsApp size={17} />
               Chat via WhatsApp
             </a>
             <span className="drawer__contact">
-              <Mail size={16} /> {site.email}
+              <Mail size={15} /> {site.email}
             </span>
             <span className="drawer__contact">
-              <Phone size={16} /> {site.phoneDisplay}
+              <Phone size={15} /> {site.phoneDisplay}
             </span>
           </div>
         </aside>
