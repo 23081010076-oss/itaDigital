@@ -44,7 +44,7 @@ export default function Navbar() {
       <header className="site-header">
         <div className="container header-inner">
           <a href="#top" aria-label={`${site.name}, kembali ke atas`}>
-            <Logo />
+            <Logo tone="light" showTagline={false} />
           </a>
 
           <nav className="nav" aria-label="Bagian halaman">
@@ -63,10 +63,6 @@ export default function Navbar() {
           </nav>
 
           <div className="header__actions">
-            <a className="btn btn--sm" href="#kontak">
-              Hubungi kami
-              <ArrowRight size={15} />
-            </a>
             <button
               type="button"
               className="nav-toggle"

@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container footer__top">
         <div className="footer__brand">
-          <Logo tone="light" />
+          <Logo tone="light" showTagline={false} />
           <p className="footer__desc">{site.summary}</p>
           <div className="footer__socials">
             {site.socials.map((social) => (
@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="footer__title">Bagian</p>
+          <p className="footer__title">Navigasi</p>
           <nav className="footer__links" aria-label="Bagian halaman">
             {sections.map((section) => (
               <a key={section.id} className="footer__link" href={`#${section.id}`}>

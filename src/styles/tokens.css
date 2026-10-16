@@ -11,18 +11,18 @@
 
 :root {
   /* ---- Warna ---- */
-  --ink: #121212;
-  --ink-soft: #4a4a48;
-  --muted: #6b6b63;
-  --line: #e7e7e3;
-  --tint: #f7f7f5;
+  --ink: #09172b;
+  --ink-soft: #44526a;
+  --muted: #687794;
+  --line: #e4e8f0;
+  --tint: #f8fafc;
   --paper: #ffffff;
-  --dark: #17171a;
+  --dark: #07172a;
 
   --red: #e11d2e; /* aksen, dari logo */
-  --red-deep: #cf1020; /* tombol bertulisan putih, kontras 5.6:1 */
-  --red-light: #f2707c; /* teks merah di atas latar gelap */
-  --red-tint: #fdecee;
+  --red-deep: #c80d20;
+  --red-light: #ff7d88;
+  --red-tint: #fde5e7;
 
   /* ---- Sudut: tiga tingkat, bukan satu nilai untuk semua ---- */
   --r-sm: 10px; /* label, kolom isian, tombol kecil */
@@ -36,8 +36,8 @@
 
   /* ---- Ukuran ---- */
   --gutter: 22px;
-  --container: 1180px;
-  --header-h: 72px;
+  --container: 1280px;
+  --header-h: 76px;
 
   /* ---- Huruf ---- */
   --font: 'Archivo', 'Segoe UI', system-ui, sans-serif;
@@ -364,6 +364,19 @@ p {
   box-shadow: 0 10px 22px rgba(207, 16, 32, 0.24);
 }
 
+.btn--accent {
+  background: #e11d2e;
+  border-color: #e11d2e;
+  color: #fff;
+  box-shadow: 0 12px 25px rgba(211, 13, 31, 0.3);
+}
+
+.btn--accent:hover {
+  background: #ff4a5b;
+  border-color: #ff4a5b;
+  color: #fff;
+}
+
 .btn--primary:hover {
   background: #b40d1c;
   border-color: #b40d1c;
@@ -371,14 +384,14 @@ p {
 }
 
 .btn--dark {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: #07172a;
+  border-color: #07172a;
   color: var(--paper);
 }
 
 .btn--dark:hover {
-  background: #000;
-  border-color: #000;
+  background: #122b49;
+  border-color: #122b49;
 }
 
 .btn--light {

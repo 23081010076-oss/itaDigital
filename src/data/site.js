@@ -14,11 +14,11 @@ export const site = {
   name: 'ITA Digital',
   nameFirst: 'ITA',
   nameSecond: 'DIGITAL',
-  tagline: 'Innovate with Intelligence',
-  taglineId: 'Inovasi digital yang tepat guna',
+  tagline: 'Digital solutions that move business forward',
+  taglineId: 'Solusi digital untuk bisnis',
 
-  headline: 'Solusi digital yang membuat kerja tim Anda lebih ringan',
-  lead: 'ITA Digital mengerjakan aplikasi web, aplikasi mobile, sistem internal, pengamanan sistem, dan pengolahan data untuk bisnis, lembaga pendidikan, dan instansi. Pengerjaan dibagi per tahap dengan demo tiap pekan.',
+  headline: 'Transform Your Business with Intelligent Digital Solutions.',
+  lead: 'Kami membantu bisnis beradaptasi di era digital melalui teknologi yang tepat guna, inovatif, dan dirancang untuk mendorong efisiensi.',
 
   summary:
     'Perusahaan teknologi yang berfokus pada pengembangan solusi digital: software, keamanan siber, konsultasi TI, dan pengolahan data.',
@@ -39,8 +39,8 @@ export const site = {
   ],
 
   /* Gambar hero */
-  heroImage: 'images/hero.png',
-  heroImageNote: 'Foto tim, suasana kantor, atau tangkapan layar produk.',
+  heroImage: 'images/hero-devices.png',
+  heroImageNote: 'Perangkat kerja digital ITA Digital.',
 }
 
 /** Tautan WhatsApp siap pakai, lengkap dengan pesan otomatis. */
@@ -52,7 +52,6 @@ export const waLink = (message) =>
 /* Menu melompat ke bagian halaman */
 export const sections = [
   { id: 'layanan', label: 'Layanan' },
-  { id: 'produk', label: 'Produk' },
   { id: 'portofolio', label: 'Portofolio' },
   { id: 'klien', label: 'Klien' },
   { id: 'kontak', label: 'Kontak' },
@@ -62,23 +61,18 @@ export const sections = [
 export const services = [
   {
     icon: 'code',
-    title: 'Software Development',
-    line: 'Aplikasi web, aplikasi mobile, dan sistem internal, termasuk perawatannya.',
-  },
-  {
-    icon: 'shield',
-    title: 'Cyber Security',
-    line: 'Uji keamanan, pengerasan server, dan pemantauan ancaman secara berkala.',
+    title: 'Company Profile',
+    line: 'Tampilkan profil bisnis, layanan, dan keunggulan Anda dengan profesional dan terpercaya.',
   },
   {
     icon: 'compass',
-    title: 'IT Consulting',
-    line: 'Penyusunan prioritas, audit infrastruktur, dan pendampingan tim teknologi.',
+    title: 'Landing Page',
+    line: 'Halaman promosi yang fokus pada produk, layanan, atau kampanye bisnis Anda.',
   },
   {
     icon: 'chart',
-    title: 'Data Analyst',
-    line: 'Dashboard, laporan berkala, dan pengolahan data operasional.',
+    title: 'Website Pendidikan',
+    line: 'Website sekolah atau kampus untuk profil institusi, informasi akademik, dan penerimaan siswa baru.',
   },
 ]
 
