@@ -3,72 +3,36 @@ import { ArrowRight, Icon, WhatsApp } from '../components/Icons.jsx'
 import { services, site, waLink } from '../data/site.js'
 
 const clientLogos = [
-  { src: 'images/bi.png', name: 'Bank Indonesia' },
-  { src: 'images/mind-id.png', name: 'MIND ID' },
-  { src: 'images/uin-jambi.png', name: 'UIN Jambi' },
-  { src: 'images/umsida.png', name: 'Universitas Muhammadiyah Sidoarjo' },
-  { src: 'images/untag-sby.png', name: 'Universitas 17 Agustus 1945 Surabaya' },
-  { src: 'images/ryper.png', name: 'Ryper' },
+  { src: 'images/vocaseek-logo.webp', name: 'Vocaseek' },
+  { src: 'images/besc-logo.webp', name: 'BESC — Biology Environmental Smart Competition' },
 ]
 
 const portfolio = [
   {
-    kind: 'company',
-    label: 'Company Profile — Studio Arsitektur',
-    title: 'Arsitektur yang membuat ruang terasa hidup.',
-    accent: 'Lihat proyek',
+    brand: 'Vocaseek',
+    image: 'images/vocaseek-portfolio.webp',
+    label: 'Vocaseek — Platform Karier Vokasi',
+    url: 'https://vocaseek.id/',
+    accent: 'Kunjungi website',
   },
   {
-    kind: 'commerce',
-    label: 'Landing Page — Produk Lokal',
-    title: 'Lebih dekat dengan pelanggan Anda.',
-    accent: 'Lihat demo',
+    brand: 'BESC',
+    image: 'images/besc-portfolio.webp',
+    label: 'BESC — Biology Environmental Smart Competition',
+    url: 'https://beschimbio.online/',
+    accent: 'Kunjungi website',
   },
 ]
 
-function PortfolioPreview({ kind, title }) {
+function PortfolioPreview({ project }) {
   return (
-    <div className={`portfolio-preview portfolio-preview--${kind}`} aria-label={title}>
-      <div className="preview-topbar">
-        <span className="preview-brand">ITA</span>
-        <span>Beranda</span>
-        <span>Layanan</span>
-        <span>Tentang</span>
-        <span className="preview-topbar__button">Hubungi</span>
-      </div>
-
-      {kind === 'company' ? (
-        <div className="preview-company">
-          <div className="preview-company__copy">
-            <b>Ruang digital<br />untuk bisnis<br />masa depan.</b>
-            <span>Website yang memberi kesan pertama yang kuat.</span>
-            <i>Pelajari lebih lanjut <ArrowRight size={10} /></i>
-          </div>
-          <div className="preview-company__house">
-            <span className="house-sun" />
-            <span className="house-main" />
-            <span className="house-roof" />
-            <span className="house-window house-window--one" />
-            <span className="house-window house-window--two" />
-            <span className="house-ground" />
-          </div>
-          <div className="preview-company__tiles"><span /><span /><span /><span /></div>
-        </div>
-      ) : (
-        <div className="preview-commerce">
-          <div className="coffee-copy">
-            <small>LOCAL PRODUCT</small>
-            <b>Rasa yang<br />selalu diingat.</b>
-            <span>Kemasan dan pengalaman belanja yang lebih berkesan.</span>
-            <i>Belanja sekarang <ArrowRight size={10} /></i>
-          </div>
-          <div className="coffee-cup"><span /></div>
-          <div className="coffee-steam coffee-steam--one" />
-          <div className="coffee-steam coffee-steam--two" />
-          <div className="coffee-strip"><span /><span /><span /></div>
-        </div>
-      )}
-    </div>
+    <img
+      className="portfolio-preview"
+      src={`./${project.image}`}
+      alt={`Pratinjau situs ${project.brand}`}
+      loading="lazy"
+      decoding="async"
+    />
   )
 }
 
@@ -86,7 +50,7 @@ export default function Landing() {
           </Reveal>
 
           <Reveal delay={140} className="hero-device">
-            <img src="./images/hero-ruang-studio.png" alt="Mockup website Ruang Studio pada komputer dan ponsel" />
+            <img src="./images/hero-ruang-studio.webp" alt="Mockup website Ruang Studio pada komputer dan ponsel" />
           </Reveal>
         </div>
       </section>
@@ -95,8 +59,7 @@ export default function Landing() {
         <div className="container">
           <Reveal className="section-heading">
             <p className="eyebrow">Layanan</p>
-            <h2>Website untuk setiap kebutuhan bisnis.</h2>
-            <p>Kami menyediakan layanan pembuatan website yang dirancang untuk membantu bisnis Anda berkembang.</p>
+            <p>Kami menyediakan berbagai layanan untuk membantu bisnis Anda berkembang di era digital.</p>
           </Reveal>
 
           <div className="service-grid">
@@ -115,20 +78,28 @@ export default function Landing() {
         <div className="container">
           <Reveal className="section-heading">
             <p className="eyebrow">Portofolio</p>
-            <h2>Gambaran website untuk bisnis Anda.</h2>
-            <p>Setiap tampilan disusun dari karakter brand, kebutuhan pelanggan, dan tujuan bisnis Anda.</p>
+            <p>Beberapa hasil karya terbaik kami.</p>
           </Reveal>
 
           <div className="portfolio-grid">
             {portfolio.map((project, index) => (
-              <Reveal className="portfolio-card" delay={index * 120} key={project.label}>
-                <PortfolioPreview kind={project.kind} title={project.title} />
+              <Reveal
+                as="a"
+                className="portfolio-card"
+                delay={index * 120}
+                href={project.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label={`${project.label} — buka website di tab baru`}
+                key={project.label}
+              >
+                <PortfolioPreview project={project} />
                 <div className="portfolio-card__bottom">
                   <p>{project.label}</p>
-                  <a href="#kontak" className="portfolio-card__link">
+                  <span className="portfolio-card__link">
                     {project.accent}
                     <ArrowRight size={15} />
-                  </a>
+                  </span>
                 </div>
               </Reveal>
             ))}
@@ -140,8 +111,6 @@ export default function Landing() {
         <div className="container">
           <Reveal className="section-heading section-heading--compact">
             <p className="eyebrow">Klien kami</p>
-            <h2>Dipercaya untuk bertumbuh.</h2>
-            <p>Beberapa organisasi dan bisnis yang pernah bekerja bersama kami.</p>
           </Reveal>
 
           <div className="client-grid">

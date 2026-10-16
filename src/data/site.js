@@ -6,7 +6,7 @@
    lalu hapus keterangan "contoh" yang ada di halaman.
 
    Gambar: simpan berkas di folder `public/images/` dengan nama yang sama
-   seperti yang tertulis di bawah (mis. `images/hero.png`). Selama berkasnya
+   seperti yang tertulis di bawah (mis. `images/hero.webp`). Selama berkasnya
    belum ada, halaman menampilkan kotak slot gambar, bukan gambar palsu.
    ========================================================================= */
 
@@ -25,8 +25,8 @@ export const site = {
 
   /* --- Kontak: ganti dengan data asli --- */
   email: 'hello@itadigital.id',
-  phoneDisplay: '+62 812-3456-7890',
-  whatsapp: '6281234567890', // format internasional tanpa tanda +
+  phoneDisplay: '+62 852-3524-2425',
+  whatsapp: '6285235242425', // format internasional tanpa tanda +
   address: 'Jl. Contoh Raya No. 123, Sukolilo, Surabaya, Jawa Timur 60111',
   city: 'Surabaya, Jawa Timur',
   hours: 'Senin sampai Jumat, 09.00 sampai 18.00 WIB',
@@ -39,14 +39,14 @@ export const site = {
   ],
 
   /* Gambar hero */
-  heroImage: 'images/hero-devices.png',
+  heroImage: 'images/hero-ruang-studio.webp',
   heroImageNote: 'Perangkat kerja digital ITA Digital.',
 }
 
 /** Tautan WhatsApp siap pakai, lengkap dengan pesan otomatis. */
 export const waLink = (message) =>
   `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(
-    message || `Halo ${site.name}, saya ingin berkonsultasi mengenai kebutuhan sistem di tempat saya.`,
+    message || `Halo ${site.name}, saya ingin berkonsultasi mengenai layanan ITA Digital.`,
   )}`
 
 /* Menu melompat ke bagian halaman */
@@ -83,21 +83,21 @@ export const products = [
     kind: 'Panel cloud',
     status: 'Tersedia',
     line: 'Pantau resource server, deploy layanan, dan atur akses tim dari satu dasbor.',
-    image: 'images/produk-panel.png',
+    image: 'images/produk-panel.webp',
   },
   {
     title: 'ITA Pay',
     kind: 'Pembayaran tagihan',
     status: 'Tersedia',
     line: 'Multi kanal pembayaran, rekonsiliasi otomatis, dan riwayat transaksi.',
-    image: 'images/produk-pay.png',
+    image: 'images/produk-pay.webp',
   },
   {
     title: 'ITA POS',
     kind: 'Kasir dan inventori',
     status: 'Tersedia',
     line: 'Transaksi cepat, stok multi gudang, dan laporan penjualan harian.',
-    image: 'images/produk-pos.png',
+    image: 'images/produk-pos.webp',
   },
 ]
 
@@ -108,28 +108,28 @@ export const projects = [
     category: 'Cloud',
     year: '2025',
     line: 'Dasbor untuk memantau puluhan server pelanggan dan mengatur akses tim teknis.',
-    image: 'images/proyek-1.png',
+    image: 'images/proyek-1.webp',
   },
   {
     title: 'Platform Reward Poin',
     category: 'Web App',
     year: '2025',
     line: 'Pengumpulan poin dari tugas, penukaran hadiah, dan panel mitra.',
-    image: 'images/proyek-2.png',
+    image: 'images/proyek-2.webp',
   },
   {
     title: 'Sistem Informasi Santri',
     category: 'Sistem Informasi',
     year: '2024',
     line: 'Pendaftaran, keuangan, absensi, dan rapor dalam satu basis data berlapis.',
-    image: 'images/proyek-3.png',
+    image: 'images/proyek-3.webp',
   },
   {
     title: 'Portal Pembayaran Tagihan',
     category: 'Web App',
     year: '2024',
     line: 'Pembayaran multi kanal dengan rekonsiliasi otomatis dan pengingat jatuh tempo.',
-    image: 'images/proyek-4.png',
+    image: 'images/proyek-4.webp',
   },
 ]
 
